@@ -4,15 +4,50 @@
   "info": {
     "singularName": "sugar-premio",
     "pluralName": "sugar-premios",
-    "displayName": "sugar-premio"
+    "displayName": "sugar-premio",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "texto": {
-      "type": "string"
+    "titulo": {
+      "type": "string",
+      "required": true,
+      "maxLength": 25,
+      "unique": true,
+      "minLength": 1
+    },
+    "descripcion": {
+      "type": "text",
+      "required": true,
+      "unique": true,
+      "maxLength": 100,
+      "minLength": 10
+    },
+    "puntos": {
+      "type": "string",
+      "default": "10000",
+      "required": true,
+      "unique": false,
+      "maxLength": 6,
+      "minLength": 4
+    },
+    "imgPremio": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "titulo"
     }
   }
 }

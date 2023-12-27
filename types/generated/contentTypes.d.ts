@@ -368,12 +368,35 @@ export interface ApiSugarPremioSugarPremio extends Schema.CollectionType {
     singularName: 'sugar-premio';
     pluralName: 'sugar-premios';
     displayName: 'sugar-premio';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    texto: Attribute.String;
+    titulo: Attribute.String &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 1;
+        maxLength: 25;
+      }>;
+    descripcion: Attribute.Text &
+      Attribute.Required &
+      Attribute.Unique &
+      Attribute.SetMinMaxLength<{
+        minLength: 10;
+        maxLength: 100;
+      }>;
+    puntos: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 4;
+        maxLength: 6;
+      }> &
+      Attribute.DefaultTo<'10000'>;
+    imgPremio: Attribute.Media & Attribute.Required;
+    slug: Attribute.UID<'api::sugar-premio.sugar-premio', 'titulo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
